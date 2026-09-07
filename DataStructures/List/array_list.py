@@ -115,3 +115,6 @@ def sub_list(my_list, pos, size):
 
 def selection_sort(my_list,sort_crit):
     n=my_list["size"]
+    for i in range(n):
+        min_index=i
+        

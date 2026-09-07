@@ -35,6 +35,8 @@ data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/GoodReads'
 
 sort_algorithm = None
 data_structure = None
+sort_crit=al.default_sort_criteria
+
 
 
 """
