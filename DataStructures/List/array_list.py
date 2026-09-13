@@ -112,9 +112,66 @@ def sub_list(my_list, pos, size):
             "size": size
         }
         return sub_list
+    
+def default_sort_criteria (element1, element2):
+    
+    is_sorted = False
+    
+    if element1 < element2:
+        is_sorted = True
+    return is_sorted
 
 def selection_sort(my_list,sort_crit):
     n=my_list["size"]
     for i in range(n):
         min_index=i
-        
+        for j in range(i+1, n):
+            element_j = get_element(my_list, j)
+            element_min = get_element(my_list, min_index)
+
+            if sort_crit(element_j, element_min):
+                min_index = j
+        element_i = get_element(my_list, i)
+        element_min = get_element(my_list, min_index)
+
+        change_info(my_list, i, element_min)
+        change_info(my_list, min_index, element_i)
+
+    return my_list
+
+def insertion_sort(my_list, sort_crit):
+    n = my_list["size"]
+
+    for i in range(1, n):
+        element = get_element(my_list, i)
+        j = i - 1
+
+        while j >= 0 and sort_crit(element, get_element(my_list, j)):
+            previous = get_element(my_list, j)
+            change_info(my_list, j + 1, previous)
+            j = j - 1
+
+        change_info(my_list, j + 1, element)
+
+    return my_list
+
+def shell_sort(my_list, sort_crit):
+    n = my_list["size"]
+    h = n // 2
+
+    while h > 0:
+
+        for i in range(h, n):
+            element = get_element(my_list, i)
+            j = i
+
+            while j >= h and sort_crit(element, get_element(my_list, j - h)):
+                previous = get_element(my_list, j - h)
+                change_info(my_list, j, previous)
+                j = j - h
+
+            change_info(my_list, j, element)
+
+        h = h // 2
+
+    return my_list
