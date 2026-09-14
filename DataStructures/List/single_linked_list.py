@@ -318,24 +318,3 @@ def merge_sort(my_list, sort_crit):
 
     return my_list
 
-def quick_sort(my_list, sort_crit):
-
-    def sort_range(low, high):
-        if low < high:
-            pivot = get_element(my_list, high)
-            i = low - 1
-
-            for j in range(low, high):
-                element_j = get_element(my_list, j)
-                if sort_crit(element_j, pivot):
-                    i += 1
-                    exchange(my_list, i, j)
-
-            exchange(my_list, i + 1, high)
-            pivot_pos = i + 1
-
-            sort_range(low, pivot_pos - 1)
-            sort_range(pivot_pos + 1, high)
-
-    sort_range(0, my_list["size"] - 1)
-    return my_list
