@@ -188,19 +188,21 @@ def exchange(my_list, pos1, pos2):
     node1["info"] = node2["info"]
     node2["info"] = temp_info
     return my_list
-def sub_list(my_list, pos1, pos2):
-    if pos1 < 0 or pos2 >= my_list["size"] or pos1 > pos2:
+def sub_list(my_list, pos, size):
+    if pos < 0 or pos >= my_list["size"] or size < 0 or pos + size > my_list["size"]:
         raise Exception("IndexError: list index out of range")
     sub_list = new_list()
     searchpos = 0
     node = my_list["first"]
-    while searchpos < pos1:
+    while searchpos < pos:
         node = node["next"]
         searchpos += 1
-    while searchpos <= pos2:
+    count = 0
+    while count < size:
         add_last(sub_list, node["info"])
         node = node["next"]
         searchpos += 1
+        count += 1
     return sub_list
 
 def default_sort_criteria (element1, element2):
