@@ -286,15 +286,15 @@ def count_books_by_tag(catalog, tag_name):
 
 # TODO: completar las funciones para obtener el tamaño de la lista de libros, autores y tagas
 def book_size(catalog):
-    pass
+    return data_structure.size(catalog("Books"))
 
 
 def author_size(catalog):
-    pass
+    return data_structure.size(catalog("authors"))
 
 
 def tag_size(catalog):
-    pass
+    return data_structure.size(catalog("tags"))
 
 
 def book_tag_size(catalog):
