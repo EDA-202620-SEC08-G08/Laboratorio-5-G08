@@ -318,3 +318,47 @@ def merge_sort(my_list, sort_crit):
 
     return my_list
 
+def quick_sort(my_list, sort_crit):
+    if my_list is None or size(my_list) <= 1:
+        return my_list
+
+    pivote = first_element(my_list)
+
+    menores = new_list()
+    iguales = new_list()
+    mayores = new_list()
+
+    nodo_actual = my_list["first"]
+    while nodo_actual is not None:
+        elemento = nodo_actual["info"]
+        
+        if elemento == pivote:
+            add_last(iguales, elemento)
+        elif sort_crit(elemento, pivote):
+            add_last(menores, elemento)
+        else:
+            add_last(mayores, elemento)
+            
+        nodo_actual = nodo_actual["next"]
+
+    menores_ordenados = quick_sort(menores, sort_crit)
+    mayores_ordenados = quick_sort(mayores, sort_crit)
+
+    resultado = new_list()
+
+    nodo_actual = menores_ordenados["first"] if menores_ordenados else None
+    while nodo_actual is not None:
+        add_last(resultado, nodo_actual["info"])
+        nodo_actual = nodo_actual["next"]
+
+    nodo_actual = iguales["first"] if iguales else None
+    while nodo_actual is not None:
+        add_last(resultado, nodo_actual["info"])
+        nodo_actual = nodo_actual["next"]
+
+    nodo_actual = mayores_ordenados["first"] if mayores_ordenados else None
+    while nodo_actual is not None:
+        add_last(resultado, nodo_actual["info"])
+        nodo_actual = nodo_actual["next"]
+
+    return resultado

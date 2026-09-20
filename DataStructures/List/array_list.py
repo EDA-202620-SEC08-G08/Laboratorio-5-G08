@@ -223,3 +223,38 @@ def merge_sort(my_list, sort_crit):
 
     return my_list
 
+def quick_sort(my_list, sort_crit):
+    if my_list is None or size(my_list) <= 1:
+        return my_list
+
+    pivote = get_element(my_list, 0)
+
+    menores = new_list()
+    iguales = new_list()
+    mayores = new_list()
+
+    for i in range(size(my_list)):
+        elemento = get_element(my_list, i)
+        
+        if elemento == pivote:
+            add_last(iguales, elemento)
+        elif sort_crit(elemento, pivote):
+            add_last(menores, elemento)
+        else:
+            add_last(mayores, elemento)
+
+    menores_ordenados = quick_sort(menores, sort_crit)
+    mayores_ordenados = quick_sort(mayores, sort_crit)
+
+    resultado = new_list()
+
+    for i in range(size(menores_ordenados)):
+        add_last(resultado, get_element(menores_ordenados, i))
+
+    for i in range(size(iguales)):
+        add_last(resultado, get_element(iguales, i))
+
+    for i in range(size(mayores_ordenados)):
+        add_last(resultado, get_element(mayores_ordenados, i))
+
+    return resultado
