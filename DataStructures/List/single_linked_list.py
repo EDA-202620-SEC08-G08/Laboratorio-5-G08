@@ -319,6 +319,7 @@ def merge_sort(my_list, sort_crit):
     return my_list
 
 def quick_sort(my_list, sort_crit):
+    
     if my_list is None or size(my_list) <= 1:
         return my_list
 
